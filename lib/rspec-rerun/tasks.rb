@@ -41,6 +41,7 @@ module RSpec
           options[:tag] ||= ENV['RSPEC_RERUN_TAG'] if ENV['RSPEC_RERUN_TAG']
           options[:retry_count] ||= ENV['RSPEC_RERUN_RETRY_COUNT'] if ENV['RSPEC_RERUN_RETRY_COUNT']
           options[:verbose] = (ENV['RSPEC_RERUN_VERBOSE'] != 'false') if options[:verbose].nil?
+          options[:prefix] = ENV['RSPEC_RERUN_PREFIX'] || ''
 
           options
         end
@@ -55,7 +56,7 @@ module RSpec
         end
 
         def rerun(args)
-          Rake::Task['rspec-rerun:run'].execute(args)
+          Rake::Task["#{args[:prefix]}rspec-rerun:run"].execute(args)
         end
 
         private
