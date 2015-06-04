@@ -38,6 +38,7 @@ module RSpec
           opts[:tag] ||= ENV['RSPEC_RERUN_TAG'] if ENV['RSPEC_RERUN_TAG']
           opts[:retry_count] ||= ENV['RSPEC_RERUN_RETRY_COUNT'] if ENV['RSPEC_RERUN_RETRY_COUNT']
           opts[:verbose] = (ENV['RSPEC_RERUN_VERBOSE'] != 'false') if opts[:verbose].nil?
+          opts[:prefix] = ENV['RSPEC_RERUN_PREFIX'] || ''
 
           opts
         end
